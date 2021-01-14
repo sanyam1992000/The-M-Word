@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
-
+SITE_ID = 1
 
 # Application definition
 
@@ -41,10 +41,20 @@ INSTALLED_APPS = [
 
     'celery',
     'corsheaders',
-    'rest_framework',
     'storages',
 
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'nested_admin',
+
     'blog',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +94,7 @@ WSGI_APPLICATION = 'manan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -121,6 +131,20 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'core.User'
+CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
+    'TOKEN_SERIALIZER': 'core.serializers.TokenSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
