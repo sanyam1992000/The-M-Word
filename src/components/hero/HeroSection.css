@@ -8,8 +8,8 @@ video {
 }
 
 .hero-container {
-  /* background: url("https://source.unsplash.com/random") center center/cover */
-  /* no-repeat; */
+  /* background: url("https://source.unsplash.com/random") center center/cover
+    no-repeat; */
   height: 80vh;
   width: 100%;
   display: flex;
