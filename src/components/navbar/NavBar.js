@@ -26,17 +26,22 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Mobile
+                Mobile Development
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Web
+                Web Development
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Machine Learning
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                Miscellaneous
               </Link>
             </li>
           </ul>
