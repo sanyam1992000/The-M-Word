@@ -1,13 +1,13 @@
 import React from "react";
 import Footer from "../footer/Footer";
-import MenuList from "../navbar/MenuList";
+import AdminMenuList from "../navbar/AdminMenuList";
 import NavBar from "../navbar/NavBar";
 
-function Base({ children }) {
+function AdminBase({ children }) {
   return (
     <div>
       <NavBar>
-        <MenuList />
+        <AdminMenuList />
       </NavBar>
       {children}
       <Footer />
@@ -15,4 +15,4 @@ function Base({ children }) {
   );
 }
 
-export default Base;
+export default AdminBase;
