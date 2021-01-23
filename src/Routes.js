@@ -10,6 +10,7 @@ import Miscellaneous from "./pages/miscellaneous/Miscellaneous";
 import Mobile from "./pages/mobile/Mobile";
 import CreateBlog from "./pages/blog/CreateBlog";
 import Webdev from "./pages/webdev/Webdev";
+import Editor from "./pages/blog/Editor";
 
 const Routes = () => {
   return (
@@ -36,14 +37,7 @@ const Routes = () => {
           exact
           component={CreateBlog}
         />
-        <AuthorRoute
-          path="/admin/edit/:blogid"
-          render={(props) => {
-            return {
-              //TODO:
-            };
-          }}
-        />
+        <AuthorRoute path="/admin/edit/:blogid" component={Editor} />
       </Switch>
     </BrowserRouter>
   );

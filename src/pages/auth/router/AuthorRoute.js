@@ -8,7 +8,7 @@ const AuthorRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         /*isAutheticated() && isAuthor*/
-        false ? (
+        true ? (
           <Component {...props} />
         ) : (
           <Redirect
