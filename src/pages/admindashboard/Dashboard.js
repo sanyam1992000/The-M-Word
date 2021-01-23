@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import BCard from "../../components/cards/BCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -71,9 +71,11 @@ function Dashboard() {
             <div className={classes.heroButtons}>
               <Grid container spacing={1} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    Create new Blog
-                  </Button>
+                  <Link to="/admin/create-new-blog">
+                    <Button variant="contained" color="primary">
+                      Create new Blog
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
             </div>

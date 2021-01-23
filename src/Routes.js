@@ -8,7 +8,7 @@ import Home from "./pages/home/Home";
 import MachineLearning from "./pages/machinelearning/MachineLearning";
 import Miscellaneous from "./pages/miscellaneous/Miscellaneous";
 import Mobile from "./pages/mobile/Mobile";
-import CreateBlog from "./pages/newBlog/CreateBlog";
+import CreateBlog from "./pages/blog/CreateBlog";
 import Webdev from "./pages/webdev/Webdev";
 
 const Routes = () => {
@@ -36,14 +36,14 @@ const Routes = () => {
           exact
           component={CreateBlog}
         />
-        {/*<AuthorRoute
+        <AuthorRoute
           path="/admin/edit/:blogid"
           render={(props) => {
             return {
               //TODO:
             };
           }}
-        /> */}
+        />
       </Switch>
     </BrowserRouter>
   );

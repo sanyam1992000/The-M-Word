@@ -16,6 +16,7 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import Select from "@material-ui/core/Select";
 import AdminMenuList from "../../components/navbar/AdminMenuList";
 import AdminBase from "../../components/AdminBase/AdminBase";
+import uploadImageService from "../../services/upload-image.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,71 +50,82 @@ function getSteps() {
   return ["Set title", "Create an ad group", "Create an ad"];
 }
 
-function getStepContent(step, classes) {
-  switch (step) {
-    case 0:
-      return (
-        <>
-          Give your blog a classy title so that it could rule the trending
-          board!!
-          <Grid item xs={12} className={classes.grid}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="title"
-              label="Title"
-              name="title"
-              autoComplete="title"
-            />
-          </Grid>
-        </>
-      );
-    case 1:
-      return (
-        <>
-          Choose the genre which your blog falls into !!
-          <Grid item xs={12} className={classes.grid}>
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-age-native-simple">
-                Genre
-              </InputLabel>
-              <Select
-                native
-                // value={state.age}
-                // onChange={handleChange}
-                label="genre"
-                inputProps={{
-                  name: "genre",
-                  id: "outlined-age-native-simple",
-                }}
-                fullWidth
-              >
-                <option aria-label="None" value="" />
-                <option value={1}>Competitive</option>
-                <option value={2}>Mobile development</option>
-                <option value={3}>Web development</option>
-                <option value={4}>Machine Learning</option>
-                <option value={6}>Miscellaneous</option>
-              </Select>
-            </FormControl>
-          </Grid>
-        </>
-      );
-    case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
-    default:
-      return "Unknown step";
-  }
-}
-
 const CreateBlog = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
   const steps = getSteps();
+
+  const setTitleComponent = () => (
+    <>
+      <br />
+      Give your blog a classy title so that it could rule the trending board!!
+      <Grid item xs={12} className={classes.grid}>
+        <TextField
+          variant="outlined"
+          required
+          fullWidth
+          id="title"
+          label="Title"
+          name="title"
+          autoComplete="title"
+        />
+      </Grid>
+    </>
+  );
+
+  const setGenreComponent = () => (
+    <>
+      <br />
+      Choose the genre which your blog falls into !!
+      <Grid item xs={12} className={classes.grid}>
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="outlined-age-native-simple">Genre</InputLabel>
+          <Select
+            native
+            // value={state.age}
+            // onChange={handleChange}
+            label="genre"
+            inputProps={{
+              name: "genre",
+              id: "outlined-age-native-simple",
+            }}
+            fullWidth
+          >
+            <option aria-label="None" value="" />
+            <option value={1}>Competitive</option>
+            <option value={2}>Mobile development</option>
+            <option value={3}>Web development</option>
+            <option value={4}>Machine Learning</option>
+            <option value={6}>Miscellaneous</option>
+          </Select>
+        </FormControl>
+      </Grid>
+    </>
+  );
+
+  const uploadThumbnailComponent = () => (
+    <>
+      <br />
+      Choose A thumbnail that will pull users to your masterpiece
+      <Grid item xs={12} className={classes.grid}>
+        <input type="file" accept="image/*"></input>
+      </Grid>
+    </>
+  );
+
+  const getStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return <>{setTitleComponent(classes)}</>;
+      case 1:
+        return <>{setGenreComponent(classes)}</>;
+      case 2:
+        return <>{uploadThumbnailComponent(classes)}</>;
+      default:
+        return "Unknown step";
+    }
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -127,6 +139,11 @@ const CreateBlog = () => {
     setActiveStep(0);
   };
 
+  const handleStart = () => {
+    //create blog backend call
+    //get blog id
+  };
+
   return (
     <AdminBase>
       <Container component="main" maxWidth="md">
@@ -136,7 +153,7 @@ const CreateBlog = () => {
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
                 <StepContent>
-                  <Typography>{getStepContent(index, classes)}</Typography>
+                  <Typography>{getStepContent(index)}</Typography>
                   <div>
                     <div>
                       <Button
@@ -166,7 +183,7 @@ const CreateBlog = () => {
               <Button onClick={handleReset} className={classes.button}>
                 Reset
               </Button>
-              <Button onClick={handleReset} className={classes.button}>
+              <Button onClick={handleStart} className={classes.button}>
                 Start
               </Button>
             </Paper>
