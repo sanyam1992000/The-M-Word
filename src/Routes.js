@@ -23,14 +23,7 @@ const Routes = () => {
         <Route path="/machinelearning" exact component={MachineLearning} />
         <Route path="/miscellaneous" exact component={Miscellaneous} />
         <Route path="/admin/login" exact component={Login} />
-        {/* <Route
-          path="/:blogid"
-          render={(props) => {
-            return {
-              //TODO:
-            };
-          }}
-        /> */}
+        <Route path="/:blogid" component={Editor} />
         <PrivateRoute path="/admin" exact component={Dashboard} />
         <PrivateRoute
           path="/admin/create-new-blog"
